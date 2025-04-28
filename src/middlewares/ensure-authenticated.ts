@@ -36,3 +36,4 @@ function ensureAuthenticated(
   }
 }
 
+export { ensureAuthenticated };
