@@ -34,9 +34,11 @@ class SessionsController {
     const token = sign({ role: user.role ?? "customer" }, secret, {
       subject: user.id,
       expiresIn
-    })
+    });
 
-    return response.json({ token });
+    const { password: hashedPassword, ...userWithoutPassword } = user;
+
+    return response.json({ token, user: userWithoutPassword });
   }
 }
 
