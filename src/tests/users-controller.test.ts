@@ -12,15 +12,26 @@ describe("UserController", () => {
 
   it("should create a new user successfully", async () => {
     const response = await request(app).post("/users").send({
-      name: "Joe Smith",
-      email: "tqjYB@example.com",
+      name: "Test User",
+      email: "testuser@example.com",
       password: "password123"
     })
 
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty("id");
-    expect(response.body.name).toBe("Joe Smith");
+    expect(response.status).toBe(201)
+    expect(response.body).toHaveProperty("id")
+    expect(response.body.name).toBe("Test User")
 
     user_id = response.body.id;
+  });
+
+  it("should throw an error if user with same email already exists", async () => {
+    const response = await request(app).post("/users").send({
+      name: "Duplicate User",
+      email: "testuser@example.com",
+      password: "password123"
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("User with same email already exists");
   });
 });
