@@ -1,4 +1,4 @@
-import type {Config} from 'jest';
+import type {Config} from "jest";
 
 const config: Config = {
   bail: true,
@@ -7,9 +7,9 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "node",
   testMatch: ["<rootDir>/src/**/*.test.ts"],
-  moduleNameMapper: {
-    "ˆ@/(.*)$": "<rootDir>/src/$1",
+  moduleNameMapper:{
+    "@/(.*)$": "<rootDir>/src/$1"
   }
-};
+}
 
 export default config;
